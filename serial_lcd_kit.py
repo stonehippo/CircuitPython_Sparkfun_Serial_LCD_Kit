@@ -64,10 +64,10 @@ class SerialLCDKit:
     self.special_command(_SPEC_CMD_SCROLL_LEFT)
 
   def enable_blink(self):
-    self.special_command(_SPEC_CMD_UNDERLINE_ON)
+    self.special_command(_SPEC_CMD_BLINKING_BOX_ON)
 
   def disable_blink(self):
-    self.special_command(_SPEC_CMD_UNDERLINE_OFF)
+    self.special_command(_SPEC_CMD_BLINKING_BOX_OFF)
 
   def enable_underline(self):
     self.special_command(_SPEC_CMD_UNDERLINE_ON)
