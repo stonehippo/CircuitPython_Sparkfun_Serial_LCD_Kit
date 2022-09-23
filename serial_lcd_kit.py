@@ -18,6 +18,10 @@ _SPEC_CMD_BLINKING_BOX_ON = 0x0D
 _SPEC_CMD_BLINKING_BOX_OFF = 0x0C
 _SPEC_CMD_SET_CURSOR_POSITION = 0x80
 _SPEC_CMD_TOGGLE_SPLASH = 0x1E
+_CHAR_CMD_CARRIAGE_RETURN = 0X0D
+_CHAR_CMD_LINE_FEED = 0x0A
+_CHAR_CMD_TAB = 0x09
+_CHAR_CMD_BACKSPACE = 0x08
 
 class SerialLCDKit:
   def __init__(self, uart):
@@ -28,6 +32,9 @@ class SerialLCDKit:
 
   def special_command(self, cmd):
     self.command(bytes([_CMD_SPECIAL_COMMAND, cmd]))
+  
+  def char_command(self, cmd):
+    self.command(bytes([cmd]))
 
   def set_baud_rate(self, baud):
     # update the LCD itself, changing the current baud rate and updating the EEPROM
@@ -86,6 +93,18 @@ class SerialLCDKit:
   def disable_underline(self):
     self.special_command(_SPEC_CMD_UNDERLINE_OFF)
 
+  def carriage_return(self):
+    self.char_command(_CHAR_CMD_CARRIAGE_RETURN)
+
+  def line_feed(self):
+    self.char_command(_CHAR_CMD_LINE_FEED)
+
+  def tab(self):
+    self.char_command(_CHAR_CMD_TAB)
+
+  def backspace(self):
+    self.char_command(_CHAR_CMD_BACKSPACE)
+    
 class BaudRate:
   BAUD_RATE_300 = {'rate': 300, 'value': 0}
   BAUD_RATE_1200 = {'rate': 1200, 'value': 1}
