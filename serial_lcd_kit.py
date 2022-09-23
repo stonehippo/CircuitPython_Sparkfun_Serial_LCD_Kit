@@ -6,6 +6,10 @@ _CMD_BACKLIGHT = 0x80
 _CMD_BAUD_RATE = 0x81
 _CMD_SPECIAL_COMMAND = 0xFE
 _SPEC_CMD_CLEAR = 0x01
+_SPEC_CMD_20_COLUMNS = 0x03
+_SPEC_CMD_16_COLUMNS = 0x04
+_SPEC_CMD_4_LINES = 0x05
+_SPEC_CMD_2_LINES = 0x06
 _SPEC_CMD_MOVE_CURSOR_RIGHT_ONE = 0x14
 _SPEC_CMD_MOVE_CURSOR_LEFT_ONE = 0x10
 _SPEC_CMD_SCROLL_RIGHT = 0x1C
@@ -89,6 +93,18 @@ class SerialLCDKit:
 
   def enable_underline(self):
     self.special_command(_SPEC_CMD_UNDERLINE_ON)
+
+  def set_display_20_columns(self):
+    self.special_command(_SPEC_CMD_20_COLUMNS)
+
+  def set_display_16_columns(self):
+    self.special_command(_SPEC_CMD_16_COLUMNS)
+
+  def set_display_4_lines(self):
+    self.special_command(_SPEC_CMD_4_LINES)
+
+  def set_display_2_lines(self):
+    self.special_command(_SPEC_CMD_2_LINES)
 
   def disable_underline(self):
     self.special_command(_SPEC_CMD_UNDERLINE_OFF)
