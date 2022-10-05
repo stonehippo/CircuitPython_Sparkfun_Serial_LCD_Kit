@@ -43,15 +43,15 @@ class SerialLCDKit:
 
   def set_baud_rate(self, baud):
     # update the LCD itself, changing the current baud rate and updating the EEPROM
-    self.command(bytes([_CMD_BAUD_RATE, baud['value']]))
+    self.command(bytes([_CMD_BAUD_RATE, baud[1]]))
     # sleep briefly so the command has time to get sent over slow UART connections
     time.sleep(1)
     # update the UART so we can keep talking to the LCD
-    self._uart.baudrate = baud['rate']
+    self._uart.baudrate = baud[0]
 
     # update the display to show the new baud rate
     self.clear_display()
-    self.write(f"Using {baud['rate']} BPS")
+    self.write(f"Using {baud[0]} BPS")
 
   def write(self, str):
     self.command(bytes(str, "ascii"))
@@ -123,14 +123,16 @@ class SerialLCDKit:
     self.char_command(_CHAR_CMD_BACKSPACE)
     
 class BaudRate:
-  BAUD_RATE_300 = {'rate': 300, 'value': 0}
-  BAUD_RATE_1200 = {'rate': 1200, 'value': 1}
-  BAUD_RATE_2400 = {'rate': 2400, 'value': 2}
-  BAUD_RATE_4800 = {'rate': 4800, 'value': 3}
-  BAUD_RATE_9600 = {'rate': 9600, 'value': 4}
-  BAUD_RATE_14400 = {'rate': 14400, 'value': 5}
-  BAUD_RATE_19200 = {'rate': 19200, 'value': 6}
-  BAUD_RATE_28800 = {'rate': 28800, 'value': 7}
-  BAUD_RATE_38400 = {'rate': 38400, 'value': 8}
-  BAUD_RATE_57600 = {'rate': 57600, 'value': 9}
-  BAUD_RATE_115200 = {'rate': 115200, 'value': 10}
+  # the first value of each tuple is the bit rate (used to set the UART),
+  # the second is the value expected by the serial backpack to use that bit rate
+  BAUD_RATE_300 = (300, 0)
+  BAUD_RATE_1200 = (1200, 1)
+  BAUD_RATE_2400 = (2400, 2)
+  BAUD_RATE_4800 = (4800, 3)
+  BAUD_RATE_9600 = (9600, 4)
+  BAUD_RATE_14400 = (14400, 5)
+  BAUD_RATE_19200 = (19200, 6)
+  BAUD_RATE_28800 = (28800, 7)
+  BAUD_RATE_38400 = (38400, 8)
+  BAUD_RATE_57600 = (57600, 9)
+  BAUD_RATE_115200 = (115200, 10)
