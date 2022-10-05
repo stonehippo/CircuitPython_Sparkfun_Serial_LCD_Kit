@@ -41,7 +41,7 @@ class SerialLCDKit:
   def char_command(self, cmd):
     self.command(bytes([cmd]))
 
-  def set_baud_rate(self, baud):
+  def set_baud_rate(self, baud, show_new_rate=True):
     # update the LCD itself, changing the current baud rate and updating the EEPROM
     self.command(bytes([_CMD_BAUD_RATE, baud[1]]))
     # sleep briefly so the command has time to get sent over slow UART connections
@@ -51,7 +51,8 @@ class SerialLCDKit:
 
     # update the display to show the new baud rate
     self.clear_display()
-    self.write(f"Using {baud[0]} BPS")
+    if show_new_rate:
+      self.write(f"Using {baud[0]} BPS")
 
   def write(self, str):
     self.command(bytes(str, "ascii"))
