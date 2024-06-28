@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This driver is for the `Sparkfun Serial LCD Kit <https://www.sparkfun.com/products/10097>`_. It provides and API for the full set of `byte-based commands that control the backpack <https://github.com/jimblom/Serial-LCD-Kit/wiki/Serial-Enabled-LCD-Kit-Datasheet>`_.
+This driver is for the `Sparkfun Serial LCD Kit <https://www.sparkfun.com/products/10097>`_. It provides an API for the full set of `byte-based commands that control the backpack <https://github.com/jimblom/Serial-LCD-Kit/wiki/Serial-Enabled-LCD-Kit-Datasheet>`_.
 
 Dependencies
 ============
@@ -17,7 +17,7 @@ This is easily achieved by downloading
 Usage Example
 =============
 
-The ``SerialLCDKit`` class sends text and special command bytes to the backup controller via a UART.
+The ``SerialLCDKit`` class sends text and special command bytes to the backpack controller via a UART.
 
 .. code-block:: python
 
