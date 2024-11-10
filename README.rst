@@ -54,7 +54,7 @@ The ``BaudRate`` class defines constants for valid baud rates to set on the seri
   # set the new baud rate to 115,200 bps, which will be stored in EEPROM
   lcd.set_baud_rate(serial_lcd_kit.BaudRate.BAUD_RATE_115200)
 
-Note: I have found that tryting to use a baud of 300 BPS with some boards (e.g. Metro M0) does not work. I cannot imagine why you'd want to talk to the LCD that slowyly with anything modern anyway!
+Note: I have found that tryting to use a baud of 300 BPS with some boards (e.g. Metro M0) does not work. I cannot imagine why you'd want to talk to the LCD that slowly with anything modern anyway!
 
 If you need to change the UART of your CircuitPython board directly (for example, if the backpack baud is not the defualt 9600), you can use something like
 
